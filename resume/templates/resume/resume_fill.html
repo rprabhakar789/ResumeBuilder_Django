@@ -1,0 +1,20 @@
+{% extends 'resume/base.html' %}
+{% load static %}
+{% block content %}
+{% if error %}
+    <h> Error occurred, fill again </h>
+{% endif %}
+<form method="POST" class="post-form" >
+    {% csrf_token %}
+         {{ form.as_p }}
+        {% if name == 'job' or name == 'education' or name == 'skills' %}
+            <button type="submit" name="submit" value="add another">add another</button>
+        {% endif %}
+        {% if not name == 'skills' %}
+            <button type="submit" name="submit" value="next">next</button>
+        {% endif %}
+        <button type="submit" name="submit" value="submit">submit</button>
+</form>
+
+
+{% endblock %}
